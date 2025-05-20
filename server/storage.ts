@@ -72,7 +72,15 @@ export class MemStorage implements IStorage {
   async createConsultationSubmission(data: InsertConsultation): Promise<ConsultationSubmission> {
     const id = this.consultationIdCounter++;
     const createdAt = new Date();
-    const submission: ConsultationSubmission = { ...data, id, createdAt };
+    // Ensure all optional fields are properly handled
+    const submission: ConsultationSubmission = { 
+      ...data, 
+      id, 
+      createdAt,
+      message: data.message || null,
+      studyDestination: data.studyDestination || null,
+      programLevel: data.programLevel || null
+    };
     this.consultationSubmissions.set(id, submission);
     return submission;
   }

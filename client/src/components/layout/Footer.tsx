@@ -36,12 +36,12 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><Link href="/"><a className="text-white text-opacity-70 hover:text-primary transition-colors">Home</a></Link></li>
-              <li><Link href="/about"><a className="text-white text-opacity-70 hover:text-primary transition-colors">About Us</a></Link></li>
-              <li><Link href="/countries"><a className="text-white text-opacity-70 hover:text-primary transition-colors">Countries</a></Link></li>
-              <li><Link href="/services"><a className="text-white text-opacity-70 hover:text-primary transition-colors">Services</a></Link></li>
-              <li><Link href="/eligibility"><a className="text-white text-opacity-70 hover:text-primary transition-colors">Eligibility</a></Link></li>
-              <li><Link href="/contact"><a className="text-white text-opacity-70 hover:text-primary transition-colors">Contact</a></Link></li>
+              <li><Link href="/"><span className="text-white text-opacity-70 hover:text-primary transition-colors cursor-pointer">Home</span></Link></li>
+              <li><Link href="/about"><span className="text-white text-opacity-70 hover:text-primary transition-colors cursor-pointer">About Us</span></Link></li>
+              <li><Link href="/countries"><span className="text-white text-opacity-70 hover:text-primary transition-colors cursor-pointer">Countries</span></Link></li>
+              <li><Link href="/services"><span className="text-white text-opacity-70 hover:text-primary transition-colors cursor-pointer">Services</span></Link></li>
+              <li><Link href="/eligibility"><span className="text-white text-opacity-70 hover:text-primary transition-colors cursor-pointer">Eligibility</span></Link></li>
+              <li><Link href="/contact"><span className="text-white text-opacity-70 hover:text-primary transition-colors cursor-pointer">Contact</span></Link></li>
             </ul>
           </div>
           

@@ -81,17 +81,17 @@ const Header = () => {
             <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
-                  <a className={`font-medium py-2 transition-colors ${location === item.href ? 'text-primary' : 'text-dark hover:text-primary'}`}>
+                  <span className={`font-medium py-2 transition-colors block cursor-pointer ${location === item.href ? 'text-primary' : 'text-dark hover:text-primary'}`}>
                     {item.label}
-                  </a>
+                  </span>
                 </Link>
               ))}
               <Link href="/consultation">
-                <a className="mt-2">
+                <div className="mt-2">
                   <Button className="w-full bg-primary text-secondary hover:bg-primary/90 font-bold rounded-full">
                     Free Consultation
                   </Button>
-                </a>
+                </div>
               </Link>
             </div>
           </div>
