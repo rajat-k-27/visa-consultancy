@@ -1,34 +1,27 @@
 import { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { apiRequest } from '@/lib/queryClient';
-import { submitToGoogleForms } from '@/lib/utils/form-submission';
 
-const formSchema = z.object({
-  firstName: z.string().min(2, { message: 'First name must be at least 2 characters' }),
-  lastName: z.string().min(2, { message: 'Last name must be at least 2 characters' }),
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  phone: z.string().min(7, { message: 'Please enter a valid phone number' }),
-  studyDestination: z.string().optional(),
-  programLevel: z.string().optional(),
-  message: z.string().optional(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+interface FormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  studyDestination: string;
+  programLevel: string;
+  message: string;
+}
 
 const ConsultationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -42,26 +35,32 @@ const ConsultationForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    
+
     try {
-      // Submit to backend API
-      await apiRequest('POST', '/api/consultation', data);
-      
-      // Submit to Google Forms in parallel
-      await submitToGoogleForms(data, 'consultation');
-      
-      toast({
-        title: 'Consultation request submitted!',
-        description: 'We will contact you shortly.',
-        variant: 'default',
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
-      
-      form.reset();
-    } catch (error) {
-      console.error('Error submitting form:', error);
+
+      if (response.ok) {
+        toast({
+          title: 'Success!',
+          description: 'Your consultation request has been submitted.',
+          variant: 'default',
+        });
+        form.reset();
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit the form');
+      }
+    } catch (error: any) {
+      console.error('Form submission error:', error);
       toast({
-        title: 'Error submitting request',
-        description: 'Please try again later or contact us directly.',
+        title: 'Error',
+        description: error.message || 'There was a problem submitting your form.',
         variant: 'destructive',
       });
     } finally {
@@ -80,8 +79,8 @@ const ConsultationForm = () => {
   ];
 
   const programLevels = [
-    { value: 'Bachelors', label: 'Bachelor\'s Degree' },
-    { value: 'Masters', label: 'Master\'s Degree' },
+    { value: 'Bachelors', label: "Bachelor's Degree" },
+    { value: 'Masters', label: "Master's Degree" },
     { value: 'PhD', label: 'PhD' },
     { value: 'Diploma', label: 'Diploma/Certificate' },
     { value: 'Foundation', label: 'Foundation Year' },
@@ -119,7 +118,7 @@ const ConsultationForm = () => {
                   <Input 
                     {...field} 
                     placeholder="Enter your last name" 
-                    className="p-4 bg-light rounded-xl focus:outline-none focus:ring-2 focus:ring-primary input-focus"
+                    className="p-4 bg-light rounded-xl fokus:outline-none focus:ring-2 focus:ring-primary input-focus"
                   />
                 </FormControl>
                 <FormMessage />
@@ -171,8 +170,8 @@ const ConsultationForm = () => {
           name="studyDestination"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-dark font-medium">Preferred Study Destination</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormLabel className="text-dark font-medium">Preferred Study Destination*</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value || ''}>
                 <FormControl>
                   <SelectTrigger className="p-4 bg-light rounded-xl focus:outline-none focus:ring-2 focus:ring-primary input-focus">
                     <SelectValue placeholder="Select a country" />
@@ -196,8 +195,8 @@ const ConsultationForm = () => {
           name="programLevel"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-dark font-medium">Program Level</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormLabel className="text-dark font-medium">Program Level*</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value || ''}>
                 <FormControl>
                   <SelectTrigger className="p-4 bg-light rounded-xl focus:outline-none focus:ring-2 focus:ring-primary input-focus">
                     <SelectValue placeholder="Select a program level" />
@@ -221,7 +220,7 @@ const ConsultationForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-dark font-medium">Message (Optional)</FormLabel>
+              <FormLabel className="text-dark font-medium">Message*</FormLabel>
               <FormControl>
                 <Textarea 
                   {...field} 

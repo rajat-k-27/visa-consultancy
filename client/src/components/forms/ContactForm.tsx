@@ -1,30 +1,23 @@
 import { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { apiRequest } from '@/lib/queryClient';
-import { submitToGoogleForms } from '@/lib/utils/form-submission';
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  subject: z.string().min(3, { message: 'Subject must be at least 3 characters' }),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters' })
-});
-
-type FormValues = z.infer<typeof formSchema>;
+interface FormValues {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -35,26 +28,32 @@ const ContactForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    
+
     try {
-      // Submit to backend API
-      await apiRequest('POST', '/api/contact', data);
-      
-      // Submit to Google Forms in parallel
-      await submitToGoogleForms(data, 'contact');
-      
-      toast({
-        title: 'Message sent successfully!',
-        description: 'We will get back to you soon.',
-        variant: 'default',
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
-      
-      form.reset();
-    } catch (error) {
+
+      if (response.ok) {
+        toast({
+          title: 'Message sent!',
+          description: 'We will contact you shortly.',
+          variant: 'default',
+        });
+        form.reset();
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit the form');
+      }
+    } catch (error: any) {
       console.error('Error submitting form:', error);
       toast({
-        title: 'Error sending message',
-        description: 'Please try again later or contact us directly.',
+        title: 'Error submitting message',
+        description: error.message || 'Please try again later or contact us directly.',
         variant: 'destructive',
       });
     } finally {
@@ -93,6 +92,7 @@ const ContactForm = () => {
                 <FormControl>
                   <Input 
                     {...field} 
+                    type="email"
                     placeholder="Enter your email" 
                     className="p-4 bg-light rounded-xl focus:outline-none focus:ring-2 focus:ring-primary input-focus"
                   />

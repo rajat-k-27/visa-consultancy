@@ -235,7 +235,7 @@ const EligibilityCalculator: React.FC<EligibilityCalculatorProps> = ({ className
               <Card className="bg-light p-6 rounded-xl mb-8">
                 <h4 className="font-bold text-secondary mb-4">Recommended Countries:</h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {['Canada', 'Australia', 'UK', 'Germany', 'New Zealand'].map((country) => (
+                  {['Canada', 'Italy','Australia', 'UK', 'Germany', 'New Zealand'].map((country) => (
                     <div key={country} className="flex items-center p-3 bg-white rounded-lg">
                       <span className="mr-2">🏳️</span>
                       <span>{country}</span>

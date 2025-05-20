@@ -24,17 +24,17 @@ const countriesData = [
     name: 'United States',
     imageSrc: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500',
     description: 'Home to many of the world\'s top-ranked universities with cutting-edge research and diverse program options.',
-    features: ['Prestigious Schools', 'Research Opportunities', 'OPT Program']
+    features: ['Prestigious Schools', 'Research Opportunities']
   },
   {
     name: 'Germany',
-    imageSrc: 'https://pixabay.com/get/g4e35ee1a8bb2384a9b73e42cc93c1b187587926e505daeb683814f4eef3106c2a0c60b58bc8d29aacc448c46289cd13f71955d76edfef7f76c5d1254874c7d37_1280.jpg',
+    imageSrc: 'https://pixabay.com/get/gf1c15ccd4ccb15c9a9313489e4033a018f94b752048b95a6a0404c3e13d52327480347cdbefe8572ae852682ac697e5711aef2bdc5ef6e0ab8b6cb27d5491807_1280.jpg',
     description: 'Offers tuition-free education at public universities with strong focus on engineering and technical fields.',
     features: ['No/Low Tuition', 'Engineering Excellence', 'EU Access']
   },
   {
-    name: 'New Zealand',
-    imageSrc: 'https://pixabay.com/get/gc68d35e4d5e8ed16d90bd502d33b88f89891cf71d3416b03414c3fc60dade65143ad7e02d5ea2789ab495f8065e91ef3711e9ebee79fd996512fbca46ef968e2_1280.jpg',
+    name: 'Italy',
+    imageSrc: 'https://pixabay.com/get/g9624a8e24f1ac49895fffe0c335cad30b4f19b93e57b300393bb49ef639b55deca65fbd26f069d2c575cb9e1d42900bce09e62fbf8da531f69ea186d7402abe3_1280.jpg',
     description: 'Known for its practical learning approach, stunning landscapes, and welcoming atmosphere for international students.',
     features: ['Practical Education', 'Work Rights', 'Safe Environment']
   }

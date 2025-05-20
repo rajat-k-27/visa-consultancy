@@ -23,10 +23,10 @@ export const createGoogleFormsURL = (
   // Map form fields to Google Form entry IDs (these would be actual entry IDs in production)
   const entryMap = formType === "contact" 
     ? {
-        name: "entry.123456789",
-        email: "entry.987654321",
-        subject: "entry.111222333",
-        message: "entry.444555666"
+        name: "entry.1073609209",
+        email: "entry.2127335443",
+        subject: "entry.1340001643",
+        message: "entry.74201435"
       } 
     : {
         firstName: "entry.123123123",
@@ -47,6 +47,7 @@ export const createGoogleFormsURL = (
       url += `${entryMap[key as keyof typeof entryMap]}=${encodeURIComponent(String(value))}&`;
     }
   });
+  console.log("Generated Google Forms URL:", url);
 
   return url.slice(0, -1); // Remove trailing &
 };

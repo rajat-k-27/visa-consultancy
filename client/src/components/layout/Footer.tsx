@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                 <Languages className="h-6 w-6 text-secondary" />
               </div>
-              <h3 className="text-2xl font-bold text-white font-poppins">GlobalVisa</h3>
+              <h3 className="text-2xl font-bold text-white font-poppins">CAMPUS AVEUE</h3>
             </div>
             <p className="text-white text-opacity-70 mb-6">
               Your trusted partner for international education and visa consultancy, helping students achieve their dreams since 2010.
