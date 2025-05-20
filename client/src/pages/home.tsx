@@ -79,78 +79,96 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Countries will be displayed here - showing only 3 for the homepage */}
             <motion.div 
-              className="bg-white rounded-xl shadow-xl overflow-hidden card-hover"
-              whileHover={{ y: -10 }}
+              className="bg-white rounded-xl shadow-xl overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <img src="https://pixabay.com/get/g12ce8cb4eab7b49ad56f52bd2f4d9d9fa1cb3fbae970c82f875fc1ccdd9502c001ba6463b44d1652ff1140e097d33e1cb0e77a810336fabd0a68b7141de1ffb5_1280.jpg" 
-                  alt="University campus in United Kingdom" 
-                  className="w-full h-52 object-cover" />
-              <div className="p-6">
+              <div className="relative overflow-hidden">
+                <img src="https://pixabay.com/get/g12ce8cb4eab7b49ad56f52bd2f4d9d9fa1cb3fbae970c82f875fc1ccdd9502c001ba6463b44d1652ff1140e097d33e1cb0e77a810336fabd0a68b7141de1ffb5_1280.jpg" 
+                    alt="University campus in United Kingdom" 
+                    className="w-full h-52 object-cover transition-transform duration-700 hover:scale-110" />
+                <div className="absolute top-4 right-4 bg-primary text-secondary font-bold text-sm py-1 px-3 rounded-full shadow-lg">
+                  Featured
+                </div>
+                <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-secondary/80 to-transparent"></div>
+              </div>
+              <div className="p-6 relative">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-secondary">United Kingdom</h3>
-                  <div className="bg-primary h-8 w-12 rounded"></div>
+                  <h3 className="text-xl font-bold text-secondary group-hover:text-primary transition-colors">United Kingdom</h3>
+                  <div className="bg-primary h-8 w-12 rounded-lg shadow-md transform transition-transform hover:rotate-3"></div>
                 </div>
                 <p className="text-dark mb-4">Home to some of the world's oldest and most prestigious universities with a rich academic tradition.</p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-light text-secondary text-sm rounded-full">Top Universities</span>
-                  <span className="px-3 py-1 bg-light text-secondary text-sm rounded-full">Post-Study Work</span>
+                  <span className="px-3 py-1 bg-primary/10 text-secondary text-sm rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">Top Universities</span>
+                  <span className="px-3 py-1 bg-primary/10 text-secondary text-sm rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">Post-Study Work</span>
                 </div>
                 <Link href="/countries">
-                  <Button variant="default" className="rounded-full bg-secondary hover:bg-secondary/90 text-white">
-                    Learn More
+                  <Button variant="default" className="rounded-full bg-secondary hover:bg-secondary/90 text-white shadow-md hover:shadow-lg transition-all">
+                    <span className="relative z-10">Learn More</span>
                   </Button>
                 </Link>
               </div>
             </motion.div>
             
             <motion.div 
-              className="bg-white rounded-xl shadow-xl overflow-hidden card-hover"
-              whileHover={{ y: -10 }}
+              className="bg-white rounded-xl shadow-xl overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <img src="https://images.unsplash.com/photo-1560813962-ff3d8fcf59ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
-                  alt="University campus in Canada with students" 
-                  className="w-full h-52 object-cover" />
-              <div className="p-6">
+              <div className="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1560813962-ff3d8fcf59ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
+                    alt="University campus in Canada with students" 
+                    className="w-full h-52 object-cover transition-transform duration-700 hover:scale-110" />
+                <div className="absolute top-4 right-4 bg-primary text-secondary font-bold text-sm py-1 px-3 rounded-full shadow-lg">
+                  Popular
+                </div>
+                <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-secondary/80 to-transparent"></div>
+              </div>
+              <div className="p-6 relative">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-secondary">Canada</h3>
-                  <div className="bg-primary h-8 w-12 rounded"></div>
+                  <h3 className="text-xl font-bold text-secondary group-hover:text-primary transition-colors">Canada</h3>
+                  <div className="bg-primary h-8 w-12 rounded-lg shadow-md transform transition-transform hover:rotate-3"></div>
                 </div>
                 <p className="text-dark mb-4">Known for its high quality of education, safety, and excellent immigration pathways for students.</p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-light text-secondary text-sm rounded-full">Immigration Options</span>
-                  <span className="px-3 py-1 bg-light text-secondary text-sm rounded-full">Affordable</span>
+                  <span className="px-3 py-1 bg-primary/10 text-secondary text-sm rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">Immigration Options</span>
+                  <span className="px-3 py-1 bg-primary/10 text-secondary text-sm rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">Affordable</span>
                 </div>
                 <Link href="/countries">
-                  <Button variant="default" className="rounded-full bg-secondary hover:bg-secondary/90 text-white">
-                    Learn More
+                  <Button variant="default" className="rounded-full bg-secondary hover:bg-secondary/90 text-white shadow-md hover:shadow-lg transition-all">
+                    <span className="relative z-10">Learn More</span>
                   </Button>
                 </Link>
               </div>
             </motion.div>
             
             <motion.div 
-              className="bg-white rounded-xl shadow-xl overflow-hidden card-hover"
-              whileHover={{ y: -10 }}
+              className="bg-white rounded-xl shadow-xl overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <img src="https://pixabay.com/get/g91465ca72e44fac2a1d54efd4c951351b853d47a9e6f9bd73f6ea15a811bf85e3018b75c14150182f29b71c4c66e8c24f9e92160c73c1587689595fead54d420_1280.jpg" 
-                  alt="Modern university campus in Australia" 
-                  className="w-full h-52 object-cover" />
-              <div className="p-6">
+              <div className="relative overflow-hidden">
+                <img src="https://pixabay.com/get/g91465ca72e44fac2a1d54efd4c951351b853d47a9e6f9bd73f6ea15a811bf85e3018b75c14150182f29b71c4c66e8c24f9e92160c73c1587689595fead54d420_1280.jpg" 
+                    alt="Modern university campus in Australia" 
+                    className="w-full h-52 object-cover transition-transform duration-700 hover:scale-110" />
+                <div className="absolute top-4 right-4 bg-primary text-secondary font-bold text-sm py-1 px-3 rounded-full shadow-lg">
+                  Recommended
+                </div>
+                <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-secondary/80 to-transparent"></div>
+              </div>
+              <div className="p-6 relative">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-secondary">Australia</h3>
-                  <div className="bg-primary h-8 w-12 rounded"></div>
+                  <h3 className="text-xl font-bold text-secondary group-hover:text-primary transition-colors">Australia</h3>
+                  <div className="bg-primary h-8 w-12 rounded-lg shadow-md transform transition-transform hover:rotate-3"></div>
                 </div>
                 <p className="text-dark mb-4">Offers world-class education with innovative research opportunities in a diverse environment.</p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-light text-secondary text-sm rounded-full">Quality Education</span>
-                  <span className="px-3 py-1 bg-light text-secondary text-sm rounded-full">Work Rights</span>
+                  <span className="px-3 py-1 bg-primary/10 text-secondary text-sm rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">Quality Education</span>
+                  <span className="px-3 py-1 bg-primary/10 text-secondary text-sm rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">Work Rights</span>
                 </div>
                 <Link href="/countries">
-                  <Button variant="default" className="rounded-full bg-secondary hover:bg-secondary/90 text-white">
-                    Learn More
+                  <Button variant="default" className="rounded-full bg-secondary hover:bg-secondary/90 text-white shadow-md hover:shadow-lg transition-all">
+                    <span className="relative z-10">Learn More</span>
                   </Button>
                 </Link>
               </div>
