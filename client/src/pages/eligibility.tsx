@@ -3,27 +3,6 @@ import EligibilityCalculator from '@/components/forms/EligibilityCalculator';
 import { Card, CardContent } from '@/components/ui/card';
 import { Helmet } from 'react-helmet';
 import { Check } from 'lucide-react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere } from '@react-three/drei';
-import * as THREE from 'three';
-
-const Scene = () => {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <Sphere args={[1, 32, 32]} position={[0, 0, 0]}>
-        <meshStandardMaterial color="#FFCC00" wireframe />
-      </Sphere>
-      <OrbitControls 
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={5}
-      />
-    </>
-  );
-};
 
 const Eligibility = () => {
   return (
@@ -76,9 +55,13 @@ const Eligibility = () => {
               <Card className="border-none shadow-lg overflow-hidden">
                 <div className="h-48 bg-secondary relative">
                   <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <Canvas>
-                      <Scene />
-                    </Canvas>
+                    <div className="w-28 h-28 rounded-full bg-primary rotate-3d relative">
+                      <div className="absolute inset-0 w-full h-full rounded-full bg-primary/70 animate-pulse-glow"></div>
+                      <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-secondary/30 rounded-full"></div>
+                      <div className="absolute inset-0 flex items-center justify-center text-secondary font-bold">
+                        Program
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <CardContent className="p-6">
